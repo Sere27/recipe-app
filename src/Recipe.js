@@ -1,17 +1,25 @@
 import React from "react";
+import { Col, Container, Row } from "reactstrap";
+import style from "./recipe.module.css";
 
 const Recipe = ({ title, calories, image, ingredients }) => {
 	return (
-		<div>
-			<h1>{title}</h1>
-			<ol>
-				{ingredients.map((ingredient) => (
-					<li> {ingredient.text}</li>
-				))}
-			</ol>
-			<p>{calories}</p>
-			<img src={image} alt=""></img>
-		</div>
+		<Container>
+			<Row>
+				<Col>
+					<div className={style.recipe}>
+						<h1 className={style.h1}>{title}</h1>
+						<ol className={style.ol}>
+							{ingredients.map((ingredient) => (
+								<li> {ingredient.text}</li>
+							))}
+						</ol>
+						<p>Calories: {calories}</p>
+						<img className={style.image} src={image} alt=""></img>
+					</div>
+				</Col>
+			</Row>
+		</Container>
 	);
 };
 

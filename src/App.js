@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
 import "./App.css";
-import { Button } from "reactstrap";
+import { Button, Input, Col, Row } from "reactstrap";
 
 const App = () => {
 	const APP_ID = "21bbdb7c";
@@ -9,7 +9,7 @@ const App = () => {
 
 	const [recipes, setRecipes] = useState([]);
 	const [search, setSearch] = useState("");
-	const [query, setQuery] = useState("chicken");
+	const [query, setQuery] = useState("chocolate");
 
 	useEffect(() => {
 		//sadeece counter değişince çalışcak boş olursa 1 kere
@@ -39,25 +39,30 @@ const App = () => {
 	return (
 		<div className="App">
 			<form onSubmit={getSearch} className="search-form">
-				<input
+				<Input
 					className="search-bar"
 					type="text"
 					value={search}
 					onChange={updateSearch}
-				/>
-				<Button className="search-button btn" type="submit">
+				></Input>
+				<Button className="search-button" type="submit">
 					Search
 				</Button>
 			</form>
-			{recipes.map((recipe) => (
-				<Recipe
-					key={recipe.recipe.label}
-					title={recipe.recipe.label}
-					calories={recipe.recipe.calories}
-					image={recipe.recipe.image}
-					ingredients={recipe.recipe.ingredients}
-				></Recipe>
-			))}
+
+			<Row>
+				<Col sm="12" md={{ size: 8, offset: 2 }} lg="8">
+					{recipes.map((recipe) => (
+						<Recipe
+							key={recipe.recipe.label}
+							title={recipe.recipe.label}
+							calories={recipe.recipe.calories}
+							image={recipe.recipe.image}
+							ingredients={recipe.recipe.ingredients}
+						></Recipe>
+					))}
+				</Col>
+			</Row>
 		</div>
 	);
 };
